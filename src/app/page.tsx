@@ -460,52 +460,106 @@ export default function Page() {
         </div>
       </section>
 
-      {/* Research Publications Section - Full Screen */}
-      <section className="min-h-screen w-full flex items-center py-24 bg-gradient-to-b from-gray-900 to-black">
-        <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-4xl font-bold mb-16 text-center">
-            <span className="text-white">Latest </span>
-            <span className="text-cyan-400">Research</span>
-          </h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {[
-              {
-                title: "Recursive Self-Improvement in Large Language Models",
-                authors: "Zhang, Lee, Patel & Johnson",
-                date: "March 2025",
-                description: "A novel approach to enabling AI systems to analyze and enhance their own underlying architectures."
-              },
-              {
-                title: "Integrating Symbolic Knowledge with Neural Representations",
-                authors: "Williams, Chen & Gupta",
-                date: "February 2025",
-                description: "Exploring new methods for combining structured knowledge with learned distributed representations."
-              }
-            ].map((paper, idx) => (
-              <div key={idx} className="bg-gray-900 rounded-lg p-6 border-l-4 border-cyan-400 hover:shadow-lg transition-all">
-                <h3 className="text-white text-xl font-bold mb-2">{paper.title}</h3>
-                <p className="text-cyan-400 mb-4">{paper.authors} • {paper.date}</p>
-                <p className="text-gray-300 mb-6">{paper.description}</p>
-                <Link href="#">
-                  <button className="text-white flex items-center group">
-                    <span>Read paper</span>
-                    <ChevronRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
-                  </button>
-                </Link>
-              </div>
-            ))}
-          </div>
-          
-          <div className="mt-12 text-center">
-            <Link href="#">
-              <button className="text-cyan-400 border-b border-cyan-400 pb-1 hover:text-white hover:border-white transition-colors">
-                View all research publications
-              </button>
-            </Link>
-          </div>
+     {/* Products Section - Full Screen */}
+<section className="min-h-screen w-full flex items-center py-24 bg-gradient-to-b from-gray-900 to-black">
+  <div className="max-w-7xl mx-auto px-4">
+    <h2 className="text-5xl font-bold mb-16 text-center">
+      <span className="text-white">EXPLORE OUR </span>
+      <span className="text-cyan-400">PRODUCT AREAS</span>
+    </h2>
+    
+    <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+      {/* Main Product - SocioDynamics */}
+      <div className="md:col-span-2 row-span-2 bg-white rounded-lg p-8 flex flex-col items-center justify-center">
+        <div className="w-48 h-48 mb-6">
+          <Image 
+            src="/sociodynamics-logo.png" 
+            alt="SocioDynamics Logo" 
+            width={192} 
+            height={192}
+          />
         </div>
-      </section>
+        <h3 className="text-gray-800 text-3xl font-bold">SOCIODYNAMICS</h3>
+        <p className="text-gray-600 text-xl mt-2">FUTURE IS NOW</p>
+      </div>
+      
+      {/* Sociocademy */}
+      <div className="bg-white rounded-lg p-6 flex flex-col items-center justify-center">
+        <h3 className="text-gray-800 text-2xl font-bold">Sociocademy</h3>
+        <p className="text-gray-600 text-sm text-center mt-2">CONNECT. LEARN. GROW</p>
+      </div>
+      
+      {/* AirGuardian */}
+      <div className="bg-white rounded-lg p-6 flex flex-col items-center justify-center">
+        <div className="w-24 h-24 mb-2">
+          <Image 
+            src="/airguardian-logo.png" 
+            alt="AirGuardian Logo" 
+            width={96} 
+            height={96}
+          />
+        </div>
+        <h3 className="text-gray-800 text-xl font-bold">AIRGUARDIAN</h3>
+        <p className="text-gray-600 text-sm">Drone Intelligence</p>
+      </div>
+      
+      {/* SocioCare */}
+      <div className="bg-white rounded-lg p-6 flex flex-col items-center justify-center">
+        <div className="w-24 h-24 mb-2">
+          <Image 
+            src="/sociocare-logo.png" 
+            alt="SocioCare Logo" 
+            width={96} 
+            height={96}
+          />
+        </div>
+        <h3 className="text-gray-800 text-xl font-bold">SOCIO CARE</h3>
+      </div>
+      
+      {/* SocioGreen */}
+      <div className="bg-white rounded-lg p-6 flex flex-col items-center justify-center">
+        <div className="w-24 h-24 mb-2">
+          <Image 
+            src="/sociogreen-logo.png" 
+            alt="SocioGreen Logo" 
+            width={96} 
+            height={96}
+          />
+        </div>
+        <h3 className="text-gray-800 text-lg font-bold">SOCIOGREEN</h3>
+        <p className="text-gray-600 text-sm">TECHNOLOGY</p>
+      </div>
+      
+      {/* SocioGenome */}
+      <div className="bg-white rounded-lg p-6 flex flex-col items-center justify-center">
+        <div className="w-24 h-24 mb-2">
+          <Image 
+            src="/sociogenome-logo.png" 
+            alt="SocioGenome Logo" 
+            width={96} 
+            height={96}
+          />
+        </div>
+        <h3 className="text-gray-800 text-xl font-bold">SocioGenome</h3>
+        <p className="text-gray-600 text-sm">Genome AI</p>
+      </div>
+      
+      {/* QuantumLoop */}
+      <div className="bg-white rounded-lg p-6 flex flex-col items-center justify-center">
+        <div className="w-24 h-24 mb-2">
+          <Image 
+            src="/quantumloop-logo.png" 
+            alt="QuantumLoop Logo" 
+            width={96} 
+            height={96}
+          />
+        </div>
+        <h3 className="text-gray-800 text-xl font-bold">QUANTUMLOOP</h3>
+        <p className="text-gray-600 text-sm">TECHNOLOGY</p>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* Contact Section - Full Screen */}
       <section className="min-h-screen w-full flex items-center py-24 bg-gradient-to-b from-gray-900 to-black relative overflow-hidden">
