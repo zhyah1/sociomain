@@ -26,33 +26,34 @@ export default function Page() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-gray-900 to-black">
-      {/* Navbar - with scroll effect */}
-      <nav className={`fixed w-full z-50 transition-all duration-300 ${scrollY > 50 ? 'bg-gray-900 shadow-lg py-3' : 'bg-transparent py-6'}`}>
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex justify-between items-center">
-            <div>
-              {/* Logo replaced with GIF image */}
-              <div className={`relative transition-all duration-300 ${scrollY > 50 ? 'w-16 h-16' : 'w-24 h-24'}`}>
-                <Image 
-                  src="/sociologo.gif" // Change this to your local GIF path
-                  alt="SocioInvent Logo"
-                  width={scrollY > 50 ? 64 : 96}
-                  height={scrollY > 50 ? 64 : 96}
-                  className="rounded-full"
-                />
-              </div>
-            </div>
-            <div className="flex items-center gap-8">
-              {navigationItems.map((item, index) => (
-                <a key={index} href={item.href} className="text-white text-lg font-light tracking-wide hover:text-cyan-400 transition-colors">
-                  {item.title}
-                </a>
-              ))}
-            </div>
+<div className="min-h-screen bg-gradient-to-r from-gray-900 to-black">
+  {/* Navbar - with scroll effect */}
+  <nav className={`fixed w-full z-50 transition-all duration-300 ${scrollY > 50 ? 'bg-gray-900 shadow-lg py-3' : 'bg-transparent py-6'}`}>
+    <div className="max-w-7xl mx-auto px-4">
+      <div className="flex justify-between items-center">
+        <div>
+          {/* Logo replaced with GIF image */}
+          <div className={`relative transition-all duration-300 ${scrollY > 50 ? 'w-16 h-16' : 'w-24 h-24'}`}>
+            <Image 
+              src="/sociologo.gif" // Change this to your local GIF path
+              alt="SocioInvent Logo"
+              width={scrollY > 50 ? 64 : 96}
+              height={scrollY > 50 ? 64 : 96}
+              className="rounded-full"
+            />
           </div>
         </div>
-      </nav>
+        <div className="flex items-center gap-20">
+          {navigationItems.map((item, index) => (
+            <a key={index} href={item.href} className="text-white text-lg font-bold tracking-wide hover:text-cyan-400 transition-colors">
+              {item.title}
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </nav>
+
 
       {/* Hero Section - Full Screen */}
       <section className="h-screen w-full flex items-center justify-center bg-gradient-to-r from-gray-900 via-gray-800 to-black relative">
@@ -64,11 +65,11 @@ export default function Page() {
             <span className="text-green-400">.</span>
           </h1>
           <h2 className="text-white text-3xl font-light mb-12">
-            Pioneering AI that mirrors human cognition, driving us closer to true AGI
+          Avicenna 1.0: Our Most Powerful AI Model for the Agentic Era
           </h2>
           
           {/* CTA Buttons */}
-          <div className="flex justify-center gap-6 z-10 relative">
+          <div className="flex justify-center gap-40 z-10 relative">
             <Link href="#">
               <button className="bg-gradient-to-r from-purple-600 to-cyan-600 text-white px-10 py-4 rounded-full font-medium hover:shadow-lg transition-all">
                 Learn More
@@ -76,29 +77,24 @@ export default function Page() {
             </Link>
             <Link href="#">
               <button className="border border-cyan-400 text-cyan-400 px-10 py-4 rounded-full font-medium hover:bg-cyan-400 hover:bg-opacity-10 transition-all">
-                Get in Touch
+              Chat with Avicenna
               </button>
             </Link>
           </div>
         </div>
 
-        {/* Wave Animation */}
-        <div className="absolute bottom-0 left-0 right-0 w-full overflow-hidden">
-          <svg viewBox="0 0 1200 300" className="w-full opacity-60">
-            <path
-              d="M0,192L48,186.7C96,181,192,171,288,181.3C384,192,480,224,576,213.3C672,203,768,149,864,144C960,139,1056,181,1152,197.3C1248,213,1344,203,1392,197.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-              fill="url(#waveGradient)"
-              fillOpacity="1"
-            />
-            <defs>
-              <linearGradient id="waveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#3B82F6" />
-                <stop offset="100%" stopColor="#06B6D4" />
-              </linearGradient>
-            </defs>
-          </svg>
-        </div>
-      </section>
+{/* Wave Image only at the bottom of the page */}
+<div className="absolute bottom-0 left-0 right-0 w-full h-auto overflow-hidden" style={{ top: 'auto' }}>
+  <Image
+    src="/waver.png"  // Replace with your actual PNG file path
+    alt="Wave Pattern"
+    width={1200}
+    height={300}
+    className="w-full translate-y-0"  // Ensure no translation upward
+    priority
+  />
+</div>
+</section>
 
       {/* Project Brain Section - Full Screen */}
       <section className="min-h-screen w-full flex items-center py-24 bg-gradient-to-r from-gray-900 via-gray-800 to-black">
@@ -297,7 +293,259 @@ export default function Page() {
           </div>
         </div>
       </section>
-
+{/* Our Services Section - Full Screen */}
+<section className="min-h-screen w-full flex items-center py-24 bg-gradient-to-b from-gray-900 via-gray-800 to-black relative overflow-hidden">
+  {/* Background elements */}
+  <div className="absolute top-0 left-0 w-full h-full overflow-hidden opacity-20">
+    <div className="absolute -top-20 -left-20 w-96 h-96 bg-purple-600 rounded-full filter blur-3xl"></div>
+    <div className="absolute top-1/4 right-1/4 w-64 h-64 bg-cyan-500 rounded-full filter blur-3xl"></div>
+    <div className="absolute bottom-10 right-10 w-72 h-72 bg-blue-600 rounded-full filter blur-3xl"></div>
+  </div>
+  
+  <div className="max-w-7xl mx-auto px-4 relative z-10">
+    <div className="text-center mb-16">
+      <h2 className="text-5xl font-bold mb-6">
+        <span className="text-white">Our </span>
+        <span className="text-cyan-400">Services</span>
+      </h2>
+      <div className="w-32 h-1 bg-gradient-to-r from-purple-500 to-cyan-500 mx-auto"></div>
+    </div>
+    
+    <div className="mb-20">
+      <p className="text-gray-300 text-lg text-center max-w-3xl mx-auto">
+        At SocioDynamics, we offer cutting-edge AI solutions for enterprises looking to transform their digital capabilities.
+        Our team of experts specializes in developing innovative technologies that align with your business goals.
+      </p>
+    </div>
+    
+    {/* Services Grid */}
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+      {/* Service 1 */}
+      <div className="service-card flex flex-col items-center">
+        <div className="w-48 h-48 mb-8 relative">
+          {/* Cybersecurity Icon - Sphere wireframe */}
+          <svg className="w-full h-full" viewBox="0 0 200 200">
+            <g stroke="rgba(56, 189, 248, 0.8)" fill="none" strokeWidth="1">
+              {/* Create circles for the sphere wireframe */}
+              {Array.from({ length: 8 }).map((_, i) => (
+                <circle 
+                  key={`circle-${i}`}
+                  cx="100" 
+                  cy="100" 
+                  r={50 + i * 5}
+                  opacity={(1 - i * 0.1).toString()}
+                  transform={`rotate(${i * 20} 100 100)`}
+                />
+              ))}
+              {/* Create horizontal circles */}
+              {Array.from({ length: 6 }).map((_, i) => (
+                <ellipse 
+                  key={`ellipse-h-${i}`}
+                  cx="100" 
+                  cy="100" 
+                  rx="70" 
+                  ry={15 + i * 10}
+                  opacity={(0.6 + i * 0.05).toString()}
+                />
+              ))}
+              {/* Create vertical circles */}
+              {Array.from({ length: 6 }).map((_, i) => (
+                <ellipse 
+                  key={`ellipse-v-${i}`}
+                  cx="100" 
+                  cy="100" 
+                  rx={15 + i * 10} 
+                  ry="70"
+                  opacity={(0.6 + i * 0.05).toString()}
+                  transform={`rotate(${i * 30} 100 100)`}
+                />
+              ))}
+            </g>
+          </svg>
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-16 h-16 bg-cyan-400 bg-opacity-20 rounded-full animate-pulse"></div>
+          </div>
+        </div>
+        <h3 className="text-2xl font-bold text-white mb-4">Cybersecurity</h3>
+        <p className="text-gray-300 text-center">
+          Advanced threat detection and protection systems using AI-powered tools to safeguard your digital assets.
+        </p>
+      </div>
+      
+      {/* Service 2 */}
+      <div className="service-card flex flex-col items-center">
+        <div className="w-48 h-48 mb-8 relative">
+          {/* Risk Mitigation Icon - Surface plot */}
+          <svg className="w-full h-full" viewBox="0 0 200 200">
+            <g stroke="rgba(56, 189, 248, 0.8)" fill="none" strokeWidth="1">
+              {/* Create grid lines */}
+              {Array.from({ length: 11 }).map((_, i) => (
+                <path 
+                  key={`grid-v-${i}`}
+                  d={`M${40 + i * 12},40 L${40 + i * 12},160 Z`}
+                  opacity="0.7"
+                />
+              ))}
+              {Array.from({ length: 11 }).map((_, i) => (
+                <path 
+                  key={`grid-h-${i}`}
+                  d={`M40,${40 + i * 12} L160,${40 + i * 12} Z`}
+                  opacity="0.7"
+                />
+              ))}
+              {/* Surface plot curves */}
+              {Array.from({ length: 11 }).map((_, i) => (
+                <path 
+                  key={`surface-${i}`}
+                  d={`M40,${40 + i * 12} Q80,${40 + i * 12 - Math.sin(i * 0.6) * 30} 120,${40 + i * 12 + Math.cos(i * 0.5) * 20} T160,${40 + i * 12}`}
+                  opacity="0.8"
+                />
+              ))}
+            </g>
+          </svg>
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-16 h-16 bg-cyan-400 bg-opacity-20 rounded-full animate-pulse"></div>
+          </div>
+        </div>
+        <h3 className="text-2xl font-bold text-white mb-4">Risk Mitigation</h3>
+        <p className="text-gray-300 text-center">
+          Data-driven analysis to identify, assess, and mitigate potential risks across your business operations.
+        </p>
+      </div>
+      
+      {/* Service 3 */}
+      <div className="service-card flex flex-col items-center">
+        <div className="w-48 h-48 mb-8 relative">
+          {/* Product Development Icon - 3D shape */}
+          <svg className="w-full h-full" viewBox="0 0 200 200">
+            <g stroke="rgba(56, 189, 248, 0.8)" fill="none" strokeWidth="1">
+              {/* Base cube wireframe */}
+              <path d="M60,140 L140,140 L140,60 L60,60 Z" />
+              <path d="M60,60 L85,35 L165,35 L140,60" />
+              <path d="M140,60 L165,35 L165,115 L140,140" />
+              <path d="M60,140 L85,115 L165,115 L140,140" />
+              <path d="M60,60 L85,35 L85,115 L60,140" />
+              <path d="M85,115 L165,115 L165,35 L85,35" />
+              
+              {/* Internal structure lines */}
+              <path d="M60,60 L140,140" opacity="0.7" />
+              <path d="M140,60 L60,140" opacity="0.7" />
+              <path d="M85,35 L140,140" opacity="0.7" />
+              <path d="M60,60 L165,115" opacity="0.7" />
+            </g>
+          </svg>
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-16 h-16 bg-cyan-400 bg-opacity-20 rounded-full animate-pulse"></div>
+          </div>
+        </div>
+        <h3 className="text-2xl font-bold text-white mb-4">Product Development</h3>
+        <p className="text-gray-300 text-center">
+          End-to-end product design and development with focus on intelligent systems and cognitive computing solutions.
+        </p>
+      </div>
+      
+      {/* Service 4 */}
+      <div className="service-card flex flex-col items-center">
+        <div className="w-48 h-48 mb-8 relative">
+          {/* AI Solutions Icon - Dot matrix */}
+          <svg className="w-full h-full" viewBox="0 0 200 200">
+            <g stroke="rgba(56, 189, 248, 0.8)" fill="rgba(56, 189, 248, 0.8)">
+              {/* Create dot matrix pattern */}
+              {Array.from({ length: 15 }).map((_, i) => (
+                Array.from({ length: 15 }).map((_, j) => (
+                  <circle 
+                    key={`dot-${i}-${j}`}
+                    cx={40 + i * 8} 
+                    cy={40 + j * 8} 
+                    r={1.5}
+                    opacity={0.4 + Math.sin(i * j * 0.05) * 0.6}
+                  />
+                ))
+              ))}
+              
+              {/* Create active region in shape of a wave */}
+              {Array.from({ length: 15 }).map((_, i) => (
+                Array.from({ length: 5 }).map((_, j) => (
+                  <circle 
+                    key={`active-${i}-${j}`}
+                    cx={40 + i * 8} 
+                    cy={70 + Math.sin(i * 0.5) * 15 + j * 8} 
+                    r={2}
+                    opacity="1"
+                  />
+                ))
+              ))}
+            </g>
+          </svg>
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-16 h-16 bg-cyan-400 bg-opacity-20 rounded-full animate-pulse"></div>
+          </div>
+        </div>
+        <h3 className="text-2xl font-bold text-white mb-4">AI Solutions</h3>
+        <p className="text-gray-300 text-center">
+          Custom AI implementations that transform data into actionable insights and automate complex business processes.
+        </p>
+      </div>
+    </div>
+    
+    {/* Call to action */}
+    <div className="mt-24 text-center">
+      <div className="inline-block bg-gradient-to-r from-purple-600 to-cyan-500 p-0.5 rounded-lg">
+        <button className="px-8 py-3 bg-gray-900 rounded-lg text-white font-bold hover:bg-gray-800 transition-colors">
+          Request Consultation
+        </button>
+      </div>
+      <p className="text-gray-400 mt-4">
+        Our experts are ready to help you find the right solution for your business
+      </p>
+    </div>
+    
+    {/* Additional Services Info */}
+    <div className="mt-32 grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <div className="bg-gray-800 bg-opacity-50 p-8 rounded-xl border-l-4 border-purple-500">
+        <h3 className="text-2xl font-bold text-white mb-6">Enterprise Solutions</h3>
+        <p className="text-gray-300 mb-4">
+          We work closely with enterprise clients to develop tailored AI solutions that address specific business challenges and deliver measurable ROI.
+        </p>
+        <ul className="space-y-2 text-gray-300">
+          <li className="flex items-start">
+            <span className="text-cyan-400 mr-2">→</span>
+            <span>Custom AI model development and training</span>
+          </li>
+          <li className="flex items-start">
+            <span className="text-cyan-400 mr-2">→</span>
+            <span>System integration with existing infrastructure</span>
+          </li>
+          <li className="flex items-start">
+            <span className="text-cyan-400 mr-2">→</span>
+            <span>Scalable architecture design</span>
+          </li>
+        </ul>
+      </div>
+      
+      <div className="bg-gray-800 bg-opacity-50 p-8 rounded-xl border-l-4 border-cyan-500">
+        <h3 className="text-2xl font-bold text-white mb-6">Research Partnerships</h3>
+        <p className="text-gray-300 mb-4">
+          We collaborate with academic institutions and research labs to push the boundaries of AI innovation and bring cutting-edge technologies to market.
+        </p>
+        <ul className="space-y-2 text-gray-300">
+          <li className="flex items-start">
+            <span className="text-cyan-400 mr-2">→</span>
+            <span>Joint research initiatives</span>
+          </li>
+          <li className="flex items-start">
+            <span className="text-cyan-400 mr-2">→</span>
+            <span>Technology transfer programs</span>
+          </li>
+          <li className="flex items-start">
+            <span className="text-cyan-400 mr-2">→</span>
+            <span>Academic consulting services</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
       {/* Technology Overview Section - Full Screen */}
       <section className="min-h-screen w-full flex items-center py-24 bg-gradient-to-b from-gray-900 to-black">
         <div className="max-w-7xl mx-auto px-4">
@@ -460,52 +708,106 @@ export default function Page() {
         </div>
       </section>
 
-      {/* Research Publications Section - Full Screen */}
-      <section className="min-h-screen w-full flex items-center py-24 bg-gradient-to-b from-gray-900 to-black">
-        <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-4xl font-bold mb-16 text-center">
-            <span className="text-white">Latest </span>
-            <span className="text-cyan-400">Research</span>
-          </h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {[
-              {
-                title: "Recursive Self-Improvement in Large Language Models",
-                authors: "Zhang, Lee, Patel & Johnson",
-                date: "March 2025",
-                description: "A novel approach to enabling AI systems to analyze and enhance their own underlying architectures."
-              },
-              {
-                title: "Integrating Symbolic Knowledge with Neural Representations",
-                authors: "Williams, Chen & Gupta",
-                date: "February 2025",
-                description: "Exploring new methods for combining structured knowledge with learned distributed representations."
-              }
-            ].map((paper, idx) => (
-              <div key={idx} className="bg-gray-900 rounded-lg p-6 border-l-4 border-cyan-400 hover:shadow-lg transition-all">
-                <h3 className="text-white text-xl font-bold mb-2">{paper.title}</h3>
-                <p className="text-cyan-400 mb-4">{paper.authors} • {paper.date}</p>
-                <p className="text-gray-300 mb-6">{paper.description}</p>
-                <Link href="#">
-                  <button className="text-white flex items-center group">
-                    <span>Read paper</span>
-                    <ChevronRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
-                  </button>
-                </Link>
-              </div>
-            ))}
-          </div>
-          
-          <div className="mt-12 text-center">
-            <Link href="#">
-              <button className="text-cyan-400 border-b border-cyan-400 pb-1 hover:text-white hover:border-white transition-colors">
-                View all research publications
-              </button>
-            </Link>
-          </div>
+     {/* Products Section - Full Screen */}
+<section className="min-h-screen w-full flex items-center py-24 bg-gradient-to-b from-gray-900 to-black">
+  <div className="max-w-7xl mx-auto px-4">
+    <h2 className="text-5xl font-bold mb-16 text-center">
+      <span className="text-white">EXPLORE OUR </span>
+      <span className="text-cyan-400">PRODUCT AREAS</span>
+    </h2>
+    
+    <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+      {/* Main Product - SocioDynamics */}
+      <div className="md:col-span-2 row-span-2 bg-white rounded-lg p-8 flex flex-col items-center justify-center">
+        <div className="w-48 h-48 mb-6">
+          <Image 
+            src="/sociodynamics-logo.png" 
+            alt="SocioDynamics Logo" 
+            width={192} 
+            height={192}
+          />
         </div>
-      </section>
+        <h3 className="text-gray-800 text-3xl font-bold">SOCIODYNAMICS</h3>
+        <p className="text-gray-600 text-xl mt-2">FUTURE IS NOW</p>
+      </div>
+      
+      {/* Sociocademy */}
+      <div className="bg-white rounded-lg p-6 flex flex-col items-center justify-center">
+        <h3 className="text-gray-800 text-2xl font-bold">Sociocademy</h3>
+        <p className="text-gray-600 text-sm text-center mt-2">CONNECT. LEARN. GROW</p>
+      </div>
+      
+      {/* AirGuardian */}
+      <div className="bg-white rounded-lg p-6 flex flex-col items-center justify-center">
+        <div className="w-24 h-24 mb-2">
+          <Image 
+            src="/airguardian-logo.png" 
+            alt="AirGuardian Logo" 
+            width={96} 
+            height={96}
+          />
+        </div>
+        <h3 className="text-gray-800 text-xl font-bold">AIRGUARDIAN</h3>
+        <p className="text-gray-600 text-sm">Drone Intelligence</p>
+      </div>
+      
+      {/* SocioCare */}
+      <div className="bg-white rounded-lg p-6 flex flex-col items-center justify-center">
+        <div className="w-24 h-24 mb-2">
+          <Image 
+            src="/sociocare-logo.png" 
+            alt="SocioCare Logo" 
+            width={96} 
+            height={96}
+          />
+        </div>
+        <h3 className="text-gray-800 text-xl font-bold">SOCIO CARE</h3>
+      </div>
+      
+      {/* SocioGreen */}
+      <div className="bg-white rounded-lg p-6 flex flex-col items-center justify-center">
+        <div className="w-24 h-24 mb-2">
+          <Image 
+            src="/sociogreen-logo.png" 
+            alt="SocioGreen Logo" 
+            width={96} 
+            height={96}
+          />
+        </div>
+        <h3 className="text-gray-800 text-lg font-bold">SOCIOGREEN</h3>
+        <p className="text-gray-600 text-sm">TECHNOLOGY</p>
+      </div>
+      
+      {/* SocioGenome */}
+      <div className="bg-white rounded-lg p-6 flex flex-col items-center justify-center">
+        <div className="w-24 h-24 mb-2">
+          <Image 
+            src="/sociogenome-logo.png" 
+            alt="SocioGenome Logo" 
+            width={96} 
+            height={96}
+          />
+        </div>
+        <h3 className="text-gray-800 text-xl font-bold">SocioGenome</h3>
+        <p className="text-gray-600 text-sm">Genome AI</p>
+      </div>
+      
+      {/* QuantumLoop */}
+      <div className="bg-white rounded-lg p-6 flex flex-col items-center justify-center">
+        <div className="w-24 h-24 mb-2">
+          <Image 
+            src="/quantumloop-logo.png" 
+            alt="QuantumLoop Logo" 
+            width={96} 
+            height={96}
+          />
+        </div>
+        <h3 className="text-gray-800 text-xl font-bold">QUANTUMLOOP</h3>
+        <p className="text-gray-600 text-sm">TECHNOLOGY</p>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* Contact Section - Full Screen */}
       <section className="min-h-screen w-full flex items-center py-24 bg-gradient-to-b from-gray-900 to-black relative overflow-hidden">
