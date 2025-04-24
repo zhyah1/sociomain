@@ -57,15 +57,15 @@ export default function Page() {
 
       {/* Hero Section - Full Screen */}
       <section className="h-screen w-full flex items-center justify-center bg-gradient-to-r from-gray-900 via-gray-800 to-black relative">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <h1 className="text-7xl font-bold mb-6">
-            <span className="text-white">#</span>
-            <span className="text-cyan-400">Future</span>
-            <span className="text-white"> is now</span>
-            <span className="text-green-400">.</span>
-          </h1>
+      <div className="max-w-7xl mx-auto px-4 text-center">
+        <h1 className="text-8xl font-bold mb-8 tracking-tight leading-tight">
+          <span className="text-white">#</span>
+          <span className="text-cyan-400">Future</span>
+          <span className="text-white"> is now</span>
+          <span className="text-green-400">.</span>
+        </h1>
           <h2 className="text-white text-3xl font-light mb-12">
-          Avicenna 1.0: Our Most Powerful AI Model for the Agentic Era
+          Hytham 1.0: Our Most Powerful AI Model for the Agentic Era
           </h2>
           
           {/* CTA Buttons */}
@@ -77,7 +77,7 @@ export default function Page() {
             </Link>
             <Link href="#">
               <button className="border border-cyan-400 text-cyan-400 px-10 py-4 rounded-full font-medium hover:bg-cyan-400 hover:bg-opacity-10 transition-all">
-              Chat with Avicenna
+              Chat with Hytham
               </button>
             </Link>
           </div>
@@ -97,202 +97,138 @@ export default function Page() {
 </section>
 
       {/* Project Brain Section - Full Screen */}
-      <section className="min-h-screen w-full flex items-center py-24 bg-gradient-to-r from-gray-900 via-gray-800 to-black">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-            <div>
-              <h2 className="text-5xl font-bold mb-8">
-                <span className="text-lime-400">Project</span>
-                <span className="text-white"> Brain</span>
-                <span className="text-lime-400">.</span>
-              </h2>
-              <p className="text-white text-xl mb-6">
-                Pioneering AI that mirrors human cognition, driving us closer to true Artificial General Intelligence (AGI).
-              </p>
-              <p className="text-gray-300 text-lg mb-6">
-                Our revolutionary approach combines neural networks with symbolic reasoning to create AI systems that can understand context, reason through complex problems, and learn from minimal examples.
-              </p>
-              <div className="flex items-center mt-8">
-                <Link href="#">
-                  <button className="bg-gradient-to-r from-purple-600 to-cyan-600 text-white px-8 py-3 rounded-full font-medium hover:shadow-lg transition-all flex items-center">
-                    <span>Learn More</span>
-                    <ChevronRight size={20} className="ml-2" />
-                  </button>
-                </Link>
-              </div>
+      <section className="relative w-full min-h-screen bg-gray-900 overflow-hidden">
+      {/* Network background visualization */}
+      <div className="absolute inset-0">
+        {/* This would be where the network visualization appears */}
+        {Array.from({ length: 20 }).map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-2 h-2 bg-blue-400 rounded-full"
+            style={{
+              top: `${Math.random() * 100}%`,
+              left: `${Math.random() * 100}%`,
+              opacity: 0.6,
+              boxShadow: "0 0 10px #0ff"
+            }}
+          />
+        ))}
+      </div>
+      
+      {/* Content container */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 py-20 flex flex-col justify-center items-center min-h-screen text-center">
+        {/* Logo in top right */}
+        <div className="absolute top-8 right-8">
+          <div className="flex items-center">
+            <div className="w-8 h-8">
+              <svg viewBox="0 0 100 100" className="w-full h-full">
+                <circle cx="50" cy="50" r="40" fill="url(#grad1)" />
+                <defs>
+                  <radialGradient id="grad1" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+                    <stop offset="0%" stopColor="#8a3ffc" />
+                    <stop offset="100%" stopColor="#6fdbff" />
+                  </radialGradient>
+                </defs>
+              </svg>
             </div>
-            <div className="relative">
-              <div className="bg-gradient-to-br from-gray-800 to-purple-900 rounded-full w-96 h-96 mx-auto flex items-center justify-center">
-                {/* Neural network visualization */}
-                <div className="w-4/5 h-4/5 relative">
-                  {/* Network nodes */}
-                  {Array.from({ length: 12 }).map((_, i) => (
-                    <div
-                      key={i}
-                      className="absolute w-3 h-3 bg-cyan-300 rounded-full animate-pulse"
-                      style={{
-                        top: `${Math.random() * 100}%`,
-                        left: `${Math.random() * 100}%`,
-                        animationDelay: `${i * 0.2}s`,
-                        animationDuration: `${2 + Math.random() * 2}s`
-                      }}
-                    ></div>
-                  ))}
-                  
-                  {/* Network connections */}
-                  <svg className="absolute inset-0 w-full h-full">
-                    <g strokeWidth="1" stroke="rgba(255,255,255,0.5)">
-                      {Array.from({ length: 20 }).map((_, i) => (
-                        <line
-                          key={i}
-                          x1={`${Math.random() * 100}%`}
-                          y1={`${Math.random() * 100}%`}
-                          x2={`${Math.random() * 100}%`}
-                          y2={`${Math.random() * 100}%`}
-                        />
-                      ))}
-                    </g>
-                  </svg>
-                </div>
-              </div>
-              <div className="absolute -top-8 -left-8 w-24 h-24 bg-lime-400 rounded-full opacity-30 animate-pulse"></div>
-              <div className="absolute -bottom-8 -right-8 w-16 h-16 bg-cyan-400 rounded-full opacity-40 animate-pulse delay-1000"></div>
-            </div>
+            <span className="text-white ml-2 font-bold text-lg">SOCIOINVENT</span>
           </div>
-        </div>
-      </section>
-
-      {/* About Us Section - Full Screen - NEW SECTION */}
-      <section className="min-h-screen w-full flex items-center py-24 bg-gradient-to-b from-gray-900 via-gray-800 to-black relative overflow-hidden">
-        {/* Background elements */}
-        <div className="absolute top-0 left-0 w-full h-full overflow-hidden opacity-20">
-          <div className="absolute -top-20 -left-20 w-96 h-96 bg-purple-600 rounded-full filter blur-3xl"></div>
-          <div className="absolute top-1/4 right-1/4 w-64 h-64 bg-cyan-500 rounded-full filter blur-3xl"></div>
-          <div className="absolute bottom-10 right-10 w-72 h-72 bg-blue-600 rounded-full filter blur-3xl"></div>
         </div>
         
-        <div className="max-w-7xl mx-auto px-4 relative z-10">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold mb-6">
-              <span className="text-white">About </span>
-              <span className="text-cyan-400">Us</span>
-            </h2>
-            <div className="w-32 h-1 bg-gradient-to-r from-purple-500 to-cyan-500 mx-auto"></div>
-          </div>
+        {/* Main heading */}
+        <div className="mt-16 flex flex-col items-center">
+          <h1 className="text-8xl font-bold mb-4 text-center">
+            <span className="text-lime-400">Project</span>{" "}
+            <span className="text-white">Brain</span>
+            <span className="text-lime-400">.</span>
+          </h1>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div className="order-2 lg:order-1">
-              <h3 className="text-3xl font-bold text-white mb-6">Our Vision</h3>
-              <p className="text-gray-300 text-lg mb-6">
-                At SocioDynamics, we envision a world where artificial intelligence augments human capabilities while preserving human values. We are dedicated to developing AI systems that can think, learn, and adapt with human-like cognition but remain firmly grounded in ethical principles.
-              </p>
-              
-              <h3 className="text-3xl font-bold text-white mb-6 mt-12">Our Journey</h3>
-              <p className="text-gray-300 text-lg mb-6">
-                Founded in 2023, SocioDynamics emerged from groundbreaking research in cognitive science and artificial intelligence. What began as an academic exploration has evolved into a pioneering force at the intersection of neuroscience, computer science, and philosophy of mind.
-              </p>
-              
-              <div className="grid grid-cols-2 gap-8 mt-12">
-                <div className="flex flex-col items-center">
-                  <div className="text-4xl font-bold text-cyan-400 mb-2">5+</div>
-                  <p className="text-gray-300">Research Papers</p>
-                </div>
-                <div className="flex flex-col items-center">
-                  <div className="text-4xl font-bold text-cyan-400 mb-2">2</div>
-                  <p className="text-gray-300">Patents Filed</p>
-                </div>
-                <div className="flex flex-col items-center">
-                  <div className="text-4xl font-bold text-cyan-400 mb-2">2</div>
-                  <p className="text-gray-300">Research Labs</p>
-                </div>
-                <div className="flex flex-col items-center">
-                  <div className="text-4xl font-bold text-cyan-400 mb-2">10+</div>
-                  <p className="text-gray-300">Academic Partners</p>
-                </div>
-              </div>
-            </div>
-            
-            <div className="order-1 lg:order-2 relative">
-              <div className="w-full h-96 bg-gradient-to-br from-purple-900 to-cyan-900 rounded-2xl relative overflow-hidden shadow-2xl">
-                {/* Abstract representation of mind/AI */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="relative w-4/5 h-4/5">
-                    {/* Central core */}
-                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-white bg-opacity-30 rounded-full flex items-center justify-center">
-                      <div className="w-24 h-24 bg-gradient-to-br from-cyan-400 to-purple-600 rounded-full animate-pulse"></div>
-                    </div>
-                    
-                    {/* Orbiting elements */}
-                    {Array.from({ length: 6 }).map((_, i) => (
-                      <div 
-                        key={i}
-                        className="absolute rounded-full"
-                        style={{
-                          width: `${Math.random() * 16 + 8}px`,
-                          height: `${Math.random() * 16 + 8}px`,
-                          top: `${Math.random() * 100}%`,
-                          left: `${Math.random() * 100}%`,
-                          background: `rgb(${Math.random() * 100 + 155}, ${Math.random() * 100 + 155}, 255)`,
-                          boxShadow: '0 0 15px rgba(100, 200, 255, 0.8)',
-                          animation: `float ${Math.random() * 10 + 10}s infinite ease-in-out`,
-                        }}
-                      ></div>
-                    ))}
-                    
-                    {/* Connection lines */}
-                    <svg className="absolute inset-0 w-full h-full">
-                      <g strokeWidth="1" stroke="rgba(255,255,255,0.3)">
-                        {Array.from({ length: 15 }).map((_, i) => (
-                          <line
-                            key={i}
-                            x1={`${Math.random() * 100}%`}
-                            y1={`${Math.random() * 100}%`}
-                            x2={`${Math.random() * 100}%`}
-                            y2={`${Math.random() * 100}%`}
-                            strokeDasharray="5,5"
-                          />
-                        ))}
-                      </g>
-                    </svg>
-                  </div>
-                </div>
-              </div>
-              
-              {/* Mission statement card */}
-              <div className="absolute -bottom-12 -right-8 w-64 bg-gray-900 p-6 rounded-lg border-l-4 border-cyan-400 shadow-lg">
-                <h4 className="text-white text-lg font-bold mb-2">Our Mission</h4>
-                <p className="text-gray-300">To create intelligence that understands the world as humans do, while remaining aligned with human values.</p>
-              </div>
-            </div>
-          </div>
+          {/* Subtitle */}
+          <p className="text-white text-xl max-w-3xl text-center">
+            Pioneering AI that mirrors human cognition, driving us closer to true Artificial
+            General Intelligence (AGI).
+          </p>
           
-          {/* Values section */}
-          <div className="mt-32">
-            <h3 className="text-3xl font-bold text-white mb-12 text-center">Our Core Values</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {[
-                {
-                  title: "Scientific Rigor",
-                  description: "We maintain the highest standards of research methodology and transparency in our pursuit of advanced AI."
-                },
-                {
-                  title: "Human-Centered Design",
-                  description: "We prioritize technology that enhances human capabilities rather than replacing them."
-                },
-                {
-                  title: "Ethical Innovation",
-                  description: "We develop AI with careful consideration of societal impacts and long-term consequences."
-                }
-              ].map((value, idx) => (
-                <div key={idx} className="bg-gray-800 bg-opacity-50 p-8 rounded-xl border-t border-purple-500">
-                  <h4 className="text-white text-xl font-bold mb-4">{value.title}</h4>
-                  <p className="text-gray-300">{value.description}</p>
-                </div>
-              ))}
-            </div>
+          {/* Learn More button */}
+          <div className="mt-12">
+            <button className="px-8 py-3 bg-gradient-to-r from-purple-500 to-green-500 rounded-full text-white text-lg font-medium">
+              Learn More
+            </button>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
+
+    {/*project brain description*/}
+
+    <section className="w-full py-20 bg-gradient-to-b from-gray-900 to-blue-900">
+      <div className="max-w-6xl mx-auto px-6">
+        {/* Main Heading - Left aligned */}
+        <h2 className="text-6xl font-bold mb-20 text-left">
+          <span className="text-lime-400">Project</span>{" "}
+          <span className="text-white">Brain</span>
+          <span className="text-lime-400">.</span>
+        </h2>
+        
+        {/* Subtitle with Brain Icon - Center aligned */}
+        <h3 className="text-white text-4xl font-light mb-16 text-center leading-relaxed">
+          A Research Prototype Inspired by the Human Brain{" "}
+          <span className="inline-block mx-1">
+            <svg viewBox="0 0 24 24" width="36" height="36" fill="#FF69B4">
+              <path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm0 16c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7z"/>
+              <path d="M10 10c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2zm8 3c0 .55-.45 1-1 1h-4c-.55 0-1-.45-1-1s.45-1 1-1h4c.55 0 1 .45 1 1z"/>
+            </svg>
+          </span>{" "}
+          for Achieving General Intelligence
+        </h3>
+        
+        {/* Descriptive Text - Center aligned with controlled width */}
+        <p className="text-white text-xl leading-relaxed max-w-5xl mx-auto text-center">
+          Our cutting-edge research prototype is designed to emulate the intricacies of the human brain, 
+          paving the way for the development of true Artificial General Intelligence (AGI). By leveraging 
+          advanced neural architectures, cognitive modeling, and adaptive learning systems, we are 
+          pushing the boundaries of AI to create systems capable of reasoning, problem-solving, and 
+          continuous learning—just like the human mind.
+        </p>
+      </div>
+    </section>
+
+      {/* About Us Section - Full Screen - Redesigned */}
+<section className="min-h-screen w-full flex flex-col justify-center py-24 bg-gradient-to-b from-blue-950 via-blue-900 to-black relative overflow-hidden">
+  {/* Background elements - simplified */}
+  <div className="absolute top-0 left-0 w-full h-full overflow-hidden opacity-10">
+    <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-600 rounded-full filter blur-3xl"></div>
+    <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-purple-500 rounded-full filter blur-3xl"></div>
+  </div>
+  
+  <div className="max-w-6xl mx-auto px-4 relative z-10 text-center">
+    {/* Header */}
+    <div className="mb-16">
+      <h1 className="text-7xl font-bold text-white mb-6">About</h1>
+      <div className="w-96 h-1 mx-auto bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"></div>
+    </div>
+    
+    {/* Main content - centered with larger typography */}
+    <div className="max-w-4xl mx-auto">
+      <h2 className="text-4xl font-bold text-white mb-12">
+        SocioDynamics AI: Advancing AI for a Better World
+      </h2>
+      
+      <p className="text-xl text-white mb-12 leading-relaxed">
+        SocioDynamics is an AI research and deployment company—an innovation hub
+        where ideas flourish, creativity thrives, and breakthroughs happen. Our workspace
+        drives cutting-edge technologies that redefine what&apos;s possible.
+      </p>
+      
+      <p className="text-xl text-white leading-relaxed">
+        But we go beyond technology. Our innovations are purpose-driven, harnessing the
+        power of AI and Robotics to positively impact social dynamics, fostering a better
+        and more harmonious world for all.
+      </p>
+    </div>
+    
+</div>
+</section>
 {/* Our Services Section - Full Screen */}
 <section className="min-h-screen w-full flex items-center py-24 bg-gradient-to-b from-gray-900 via-gray-800 to-black relative overflow-hidden">
   {/* Background elements */}
@@ -319,9 +255,9 @@ export default function Page() {
     </div>
     
     {/* Services Grid */}
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-8">
       {/* Service 1 */}
-      <div className="service-card flex flex-col items-center">
+      <div className="service-card flex flex-col items-center lg:col-span-3 xl:col-span-1">
         <div className="w-48 h-48 mb-8 relative">
           {/* Cybersecurity Icon - Sphere wireframe */}
           <svg className="w-full h-full" viewBox="0 0 200 200">
@@ -373,7 +309,7 @@ export default function Page() {
       </div>
       
       {/* Service 2 */}
-      <div className="service-card flex flex-col items-center">
+      <div className="service-card flex flex-col items-center lg:col-span-3 xl:col-span-1">
         <div className="w-48 h-48 mb-8 relative">
           {/* Risk Mitigation Icon - Surface plot */}
           <svg className="w-full h-full" viewBox="0 0 200 200">
@@ -414,7 +350,7 @@ export default function Page() {
       </div>
       
       {/* Service 3 */}
-      <div className="service-card flex flex-col items-center">
+      <div className="service-card flex flex-col items-center lg:col-span-3 xl:col-span-1">
         <div className="w-48 h-48 mb-8 relative">
           {/* Product Development Icon - 3D shape */}
           <svg className="w-full h-full" viewBox="0 0 200 200">
@@ -445,7 +381,7 @@ export default function Page() {
       </div>
       
       {/* Service 4 */}
-      <div className="service-card flex flex-col items-center">
+      <div className="service-card flex flex-col items-center lg:col-span-3 xl:col-span-1">
         <div className="w-48 h-48 mb-8 relative">
           {/* AI Solutions Icon - Dot matrix */}
           <svg className="w-full h-full" viewBox="0 0 200 200">
@@ -486,6 +422,138 @@ export default function Page() {
           Custom AI implementations that transform data into actionable insights and automate complex business processes.
         </p>
       </div>
+
+      {/* Service 5 - Digital Transformation */}
+      <div className="service-card flex flex-col items-center lg:col-span-3 xl:col-span-1">
+        <div className="w-48 h-48 mb-8 relative">
+          {/* Digital Transformation Icon - Connected Network */}
+          <svg className="w-full h-full" viewBox="0 0 200 200">
+            <g stroke="rgba(56, 189, 248, 0.8)" fill="rgba(56, 189, 248, 0.8)">
+              {/* Create center node */}
+              <circle cx="100" cy="100" r="10" opacity="0.9" />
+              
+              {/* Create surrounding nodes */}
+              {Array.from({ length: 8 }).map((_, i) => {
+                const angle = i * Math.PI / 4;
+                const x = 100 + Math.cos(angle) * 50;
+                const y = 100 + Math.sin(angle) * 50;
+                return (
+                  <g key={`node-${i}`}>
+                    <circle cx={x} cy={y} r="6" opacity="0.8" />
+                    <line 
+                      x1="100" 
+                      y1="100" 
+                      x2={x} 
+                      y2={y} 
+                      strokeWidth="1.5"
+                      opacity="0.6" 
+                    />
+                    
+                    {/* Secondary connections */}
+                    {Array.from({ length: 2 }).map((_, j) => {
+                      const subAngle = angle + (j === 0 ? 0.4 : -0.4);
+                      const subX = x + Math.cos(subAngle) * 25;
+                      const subY = y + Math.sin(subAngle) * 25;
+                      return (
+                        <g key={`subnode-${i}-${j}`}>
+                          <circle cx={subX} cy={subY} r="4" opacity="0.7" />
+                          <line 
+                            x1={x} 
+                            y1={y} 
+                            x2={subX} 
+                            y2={subY} 
+                            strokeWidth="1"
+                            opacity="0.5" 
+                          />
+                        </g>
+                      );
+                    })}
+                  </g>
+                );
+              })}
+              
+              {/* Add animated pulses */}
+              <circle cx="100" cy="100" r="15" opacity="0" stroke="rgba(56, 189, 248, 0.8)" strokeWidth="2" fill="none">
+                <animate attributeName="r" from="15" to="60" dur="3s" repeatCount="indefinite" />
+                <animate attributeName="opacity" from="0.8" to="0" dur="3s" repeatCount="indefinite" />
+              </circle>
+            </g>
+          </svg>
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-16 h-16 bg-cyan-400 bg-opacity-20 rounded-full animate-pulse"></div>
+          </div>
+        </div>
+        <h3 className="text-2xl font-bold text-white mb-4">Digital Transformation</h3>
+        <p className="text-gray-300 text-center">
+          Strategic frameworks and implementation services to guide your organization through comprehensive digital evolution.
+        </p>
+      </div>
+      
+      {/* Service 6 - IoT Solutions */}
+      <div className="service-card flex flex-col items-center lg:col-span-3 xl:col-span-1">
+        <div className="w-48 h-48 mb-8 relative">
+          {/* IoT Solutions Icon - Connected Devices */}
+          <svg className="w-full h-full" viewBox="0 0 200 200">
+            <g stroke="rgba(56, 189, 248, 0.8)" fill="none" strokeWidth="1.5">
+              {/* Create central cloud */}
+              <path d="M100,80 C90,65 70,65 60,75 C45,60 20,70 25,90 C10,95 10,115 25,120 C20,140 45,150 60,135 C70,145 90,145 100,130" fill="rgba(56, 189, 248, 0.1)" />
+              
+              {/* Create various IoT devices */}
+              {/* Smart watch */}
+              <rect x="130" y="50" width="18" height="22" rx="3" fill="rgba(56, 189, 248, 0.2)" />
+              <rect x="133" y="54" width="12" height="14" rx="1" fill="none" />
+              <path d="M130,61 L122,67 L122,77" />
+              
+              {/* Smart thermostat */}
+              <circle cx="150" cy="110" r="12" fill="rgba(56, 189, 248, 0.2)" />
+              <circle cx="150" cy="110" r="8" />
+              <path d="M150,98 L150,90 L160,90" />
+              
+              {/* Smartphone */}
+              <rect x="50" y="160" width="15" height="25" rx="2" fill="rgba(56, 189, 248, 0.2)" />
+              <line x1="55" y1="160" x2="60" y2="160" />
+              <path d="M50,172 L40,160 L40,150" />
+              
+              {/* Smart speaker */}
+              <path d="M120,160 C120,152 134,152 134,160 L134,170 C134,178 120,178 120,170 Z" fill="rgba(56, 189, 248, 0.2)" />
+              <path d="M127,152 L127,145 L115,145" />
+              <path d="M127,178 L127,185" />
+              
+              {/* Smart bulb */}
+              <circle cx="40" cy="40" r="10" fill="rgba(56, 189, 248, 0.2)" />
+              <path d="M40,30 L40,20" />
+              <path d="M33,33 L26,26" />
+              <path d="M30,40 L20,40" />
+              <path d="M40,50 L40,60 L50,60" />
+              
+              {/* Connection lines to cloud */}
+              <path d="M40,40 Q60,60 60,80" strokeDasharray="3,3" />
+              <path d="M139,61 Q120,70 100,80" strokeDasharray="3,3" />
+              <path d="M150,110 Q120,100 100,100" strokeDasharray="3,3" />
+              <path d="M57,160 Q70,140 70,120" strokeDasharray="3,3" />
+              <path d="M127,160 Q110,140 90,130" strokeDasharray="3,3" />
+              
+              {/* Data transmission animation */}
+              <circle cx="0" cy="0" r="2" fill="rgba(56, 189, 248, 1)">
+                <animateMotion path="M40,40 Q60,60 60,80" dur="6s" repeatCount="indefinite" />
+              </circle>
+              <circle cx="0" cy="0" r="2" fill="rgba(56, 189, 248, 1)">
+                <animateMotion path="M139,61 Q120,70 100,80" dur="4s" repeatCount="indefinite" />
+              </circle>
+              <circle cx="0" cy="0" r="2" fill="rgba(56, 189, 248, 1)">
+                <animateMotion path="M150,110 Q120,100 100,100" dur="5s" repeatCount="indefinite" />
+              </circle>
+            </g>
+          </svg>
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-16 h-16 bg-cyan-400 bg-opacity-20 rounded-full animate-pulse"></div>
+          </div>
+        </div>
+        <h3 className="text-2xl font-bold text-white mb-4">IoT Solutions</h3>
+        <p className="text-gray-300 text-center">
+          Connected device ecosystems that generate real-time data insights and enable intelligent automation across your infrastructure.
+        </p>
+      </div>
     </div>
     
     {/* Call to action */}
@@ -501,7 +569,7 @@ export default function Page() {
     </div>
     
     {/* Additional Services Info */}
-    <div className="mt-32 grid grid-cols-1 lg:grid-cols-2 gap-12">
+    <div className="mt-32 grid grid-cols-1 lg:grid-cols-3 gap-10">
       <div className="bg-gray-800 bg-opacity-50 p-8 rounded-xl border-l-4 border-purple-500">
         <h3 className="text-2xl font-bold text-white mb-6">Enterprise Solutions</h3>
         <p className="text-gray-300 mb-4">
@@ -542,6 +610,87 @@ export default function Page() {
             <span>Academic consulting services</span>
           </li>
         </ul>
+      </div>
+
+      <div className="bg-gray-800 bg-opacity-50 p-8 rounded-xl border-l-4 border-blue-500">
+        <h3 className="text-2xl font-bold text-white mb-6">Digital Transformation</h3>
+        <p className="text-gray-300 mb-4">
+          Our comprehensive approach helps organizations evolve their digital capabilities to compete in today&apos;s rapidly changing technology landscape.
+        </p>
+        <ul className="space-y-2 text-gray-300">
+          <li className="flex items-start">
+            <span className="text-cyan-400 mr-2">→</span>
+            <span>Digital maturity assessment</span>
+          </li>
+          <li className="flex items-start">
+            <span className="text-cyan-400 mr-2">→</span>
+            <span>Technology roadmap development</span>
+          </li>
+          <li className="flex items-start">
+            <span className="text-cyan-400 mr-2">→</span>
+            <span>Legacy system modernization</span>
+          </li>
+          <li className="flex items-start">
+            <span className="text-cyan-400 mr-2">→</span>
+            <span>Change management and training</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    {/* IoT Solutions Additional Info */}
+    <div className="mt-10">
+      <div className="bg-gray-800 bg-opacity-50 p-8 rounded-xl border-l-4 border-teal-500">
+        <h3 className="text-2xl font-bold text-white mb-6">IoT Implementation Services</h3>
+        <p className="text-gray-300 mb-6">
+          Our IoT solutions connect your physical assets to digital ecosystems, enabling intelligent data collection, analysis, and automated decision-making.
+        </p>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div>
+            <h4 className="text-xl font-semibold text-white mb-4">Device Ecosystem</h4>
+            <ul className="space-y-2 text-gray-300">
+              <li className="flex items-start">
+                <span className="text-cyan-400 mr-2">→</span>
+                <span>Smart sensor deployment</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-cyan-400 mr-2">→</span>
+                <span>Edge computing solutions</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-cyan-400 mr-2">→</span>
+                <span>Connectivity infrastructure</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-cyan-400 mr-2">→</span>
+                <span>Device management platforms</span>
+              </li>
+            </ul>
+          </div>
+          
+          <div>
+            <h4 className="text-xl font-semibold text-white mb-4">Data Intelligence</h4>
+            <ul className="space-y-2 text-gray-300">
+              <li className="flex items-start">
+                <span className="text-cyan-400 mr-2">→</span>
+                <span>Real-time analytics pipeline</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-cyan-400 mr-2">→</span>
+                <span>Predictive maintenance</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-cyan-400 mr-2">→</span>
+                <span>Automated workflow triggers</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-cyan-400 mr-2">→</span>
+                <span>Visualization dashboards</span>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -645,69 +794,62 @@ export default function Page() {
         </div>
       </section>
 
-      {/* Team Section - Full Screen */}
-      <section className="min-h-screen w-full flex items-center py-24 bg-gradient-to-b from-gray-900 to-black">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold mb-6">
-              <span className="text-white">Team</span>
-            </h2>
-            <div className="w-32 h-1 bg-gradient-to-r from-blue-500 to-pink-500 mx-auto"></div>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
-            {/* Team Member 1 */}
-            <div className="flex flex-col items-center">
-              <div className="bg-white rounded-3xl w-full aspect-square mb-6 overflow-hidden">
-                <div className="w-full h-full bg-gradient-to-r from-gray-100 to-gray-200"></div>
-              </div>
-              <h3 className="text-white text-2xl font-bold mb-1">Sanoufar</h3>
-              <h4 className="text-white text-2xl font-bold mb-3">Abdul Azeez</h4>
-              <p className="text-white text-lg text-center">Founder and CEO</p>
-            </div>
-            
-            {/* Team Member 2 */}
-            <div className="flex flex-col items-center">
-              <div className="bg-white rounded-3xl w-full aspect-square mb-6 overflow-hidden">
-                <div className="w-full h-full bg-gradient-to-r from-gray-100 to-gray-200"></div>
-              </div>
-              <h3 className="text-white text-2xl font-bold mb-3">Dr. Asharaf</h3>
-              <p className="text-white text-lg text-center">Chief of Research, Advisor and Mentor</p>
-            </div>
-            
-            {/* Team Member 3 */}
-            <div className="flex flex-col items-center">
-              <div className="bg-white rounded-3xl w-full aspect-square mb-6 overflow-hidden">
-                <div className="w-full h-full bg-gradient-to-r from-gray-100 to-gray-200"></div>
-              </div>
-              <h3 className="text-white text-2xl font-bold mb-1">Aditya</h3>
-              <h4 className="text-white text-2xl font-bold mb-3">Vishnu</h4>
-              <p className="text-white text-lg text-center">Web Engineering</p>
-            </div>
-            
-            {/* Team Member 4 */}
-            <div className="flex flex-col items-center">
-              <div className="bg-white rounded-3xl w-full aspect-square mb-6 overflow-hidden">
-                <div className="w-full h-full bg-gradient-to-r from-gray-100 to-gray-200"></div>
-              </div>
-              <h3 className="text-white text-2xl font-bold mb-1">Siya</h3>
-              <h4 className="text-white text-2xl font-bold mb-3">ul Haq</h4>
-              <p className="text-white text-lg text-center">AI Engineer</p>
-            </div>
-            
-            {/* Team Member 5 */}
-            <div className="flex flex-col items-center">
-              <div className="bg-white rounded-3xl w-full aspect-square mb-6 overflow-hidden">
-                <div className="w-full h-full bg-gradient-to-r from-gray-100 to-gray-200"></div>
-              </div>
-              <h3 className="text-white text-2xl font-bold mb-1">Shyni</h3>
-              <h4 className="text-white text-2xl font-bold mb-3">Sharaf</h4>
-              <p className="text-white text-lg text-center">AI Engineer</p>
-            </div>
-          </div>
+{/* Team Section - Full Screen */}
+<section className="min-h-screen w-full flex items-center py-24 bg-gradient-to-b from-gray-900 to-black">
+  <div className="max-w-7xl mx-auto px-4">
+    <div className="mb-16 text-center">
+      <h2 className="text-7xl font-bold mb-2 text-white">Team</h2>
+      <div className="w-32 h-1 bg-gradient-to-r from-blue-500 to-pink-500 mx-auto"></div>
+    </div>
+    
+    <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
+      {/* Team Member 1 */}
+      <div className="flex flex-col items-center">
+        <div className="rounded-3xl w-full aspect-square mb-4 overflow-hidden p-0.5 bg-gradient-to-r from-pink-500 via-yellow-500 to-pink-500">
+          <div className="w-full h-full bg-white rounded-2xl"></div>
         </div>
-      </section>
-
+        <h3 className="text-white text-xl font-bold mb-1 text-center">Sanoufar Abdul Azeez</h3>
+        <p className="text-white text-lg text-center">Founder and CEO</p>
+      </div>
+      
+      {/* Team Member 2 */}
+      <div className="flex flex-col items-center">
+        <div className="rounded-3xl w-full aspect-square mb-4 overflow-hidden p-0.5 bg-gradient-to-r from-pink-500 via-yellow-500 to-pink-500">
+          <div className="w-full h-full bg-white rounded-2xl"></div>
+        </div>
+        <h3 className="text-white text-xl font-bold mb-1 text-center">Dr. Asharaf S</h3>
+        <p className="text-white text-lg text-center">Chief of Research, Advisor and Mentor</p>
+      </div>
+      
+      {/* Team Member 3 */}
+      <div className="flex flex-col items-center">
+        <div className="rounded-3xl w-full aspect-square mb-4 overflow-hidden p-0.5 bg-gradient-to-r from-pink-500 via-yellow-500 to-pink-500">
+          <div className="w-full h-full bg-white rounded-2xl"></div>
+        </div>
+        <h3 className="text-white text-xl font-bold mb-1 text-center">Aditya Vishnu</h3>
+        <p className="text-white text-lg text-center">Web Engineering</p>
+      </div>
+      
+      {/* Team Member 4 */}
+      <div className="flex flex-col items-center">
+        <div className="rounded-3xl w-full aspect-square mb-4 overflow-hidden p-0.5 bg-gradient-to-r from-pink-500 via-yellow-500 to-pink-500">
+          <div className="w-full h-full bg-white rounded-2xl"></div>
+        </div>
+        <h3 className="text-white text-xl font-bold mb-1 text-center">Siyaul Haq</h3>
+        <p className="text-white text-lg text-center">AI Engineer</p>
+      </div>
+      
+      {/* Team Member 5 */}
+      <div className="flex flex-col items-center">
+        <div className="rounded-3xl w-full aspect-square mb-4 overflow-hidden p-0.5 bg-gradient-to-r from-pink-500 via-yellow-500 to-pink-500">
+          <div className="w-full h-full bg-white rounded-2xl"></div>
+        </div>
+        <h3 className="text-white text-xl font-bold mb-1 text-center">Shyni Sharaf</h3>
+        <p className="text-white text-lg text-center">AI Engineer</p>
+      </div>
+    </div>
+  </div>
+</section>
      {/* Products Section - Full Screen */}
 <section className="min-h-screen w-full flex items-center py-24 bg-gradient-to-b from-gray-900 to-black">
   <div className="max-w-7xl mx-auto px-4">
@@ -791,7 +933,32 @@ export default function Page() {
         <h3 className="text-gray-800 text-xl font-bold">SocioGenome</h3>
         <p className="text-gray-600 text-sm">Genome AI</p>
       </div>
-      
+            {/* SocioGenome */}
+            <div className="bg-white rounded-lg p-6 flex flex-col items-center justify-center">
+        <div className="w-24 h-24 mb-2">
+          <Image 
+            src="/sociogenome-logo.png" 
+            alt="SocioGenome Logo" 
+            width={96} 
+            height={96}
+          />
+        </div>
+        <h3 className="text-gray-800 text-xl font-bold">AGRIVERSE</h3>
+        <p className="text-gray-600 text-sm">AGRI TECH</p>
+      </div>
+            {/* SocioGenome */}
+            <div className="bg-white rounded-lg p-6 flex flex-col items-center justify-center">
+        <div className="w-24 h-24 mb-2">
+          <Image 
+            src="/sociogenome-logo.png" 
+            alt="SocioGenome Logo" 
+            width={96} 
+            height={96}
+          />
+        </div>
+        <h3 className="text-gray-800 text-xl font-bold">SOCIOPAY</h3>
+        <p className="text-gray-600 text-sm"></p>
+      </div>
       {/* QuantumLoop */}
       <div className="bg-white rounded-lg p-6 flex flex-col items-center justify-center">
         <div className="w-24 h-24 mb-2">
