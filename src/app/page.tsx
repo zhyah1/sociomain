@@ -15,6 +15,7 @@ const navigationItems = [
 
 export default function Page() {
   const [scrollY, setScrollY] = useState(0);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,80 +23,151 @@ export default function Page() {
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    
+    // Set isLoaded to true after a small delay to trigger animations
+    const timer = setTimeout(() => {
+      setIsLoaded(true);
+    }, 100);
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      clearTimeout(timer);
+    };
   }, []);
 
   return (
-<div className="min-h-screen bg-gradient-to-r from-gray-900 to-black">
-  {/* Navbar - with scroll effect */}
-  <nav className={`fixed w-full z-50 transition-all duration-300 ${scrollY > 50 ? 'bg-gray-900 shadow-lg py-3' : 'bg-transparent py-6'}`}>
-    <div className="max-w-7xl mx-auto px-4">
-      <div className="flex justify-between items-center">
-        <div>
-          {/* Logo replaced with GIF image */}
-          <div className={`relative transition-all duration-300 ${scrollY > 50 ? 'w-16 h-16' : 'w-24 h-24'}`}>
-            <Image 
-              src="/sociologo.gif" // Change this to your local GIF path
-              alt="SocioInvent Logo"
-              width={scrollY > 50 ? 64 : 96}
-              height={scrollY > 50 ? 64 : 96}
-              className="rounded-full"
-            />
+    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black">
+      {/* Navbar - with scroll effect */}
+      <nav className={`fixed w-full z-50 transition-all duration-300 ${scrollY > 50 ? 'bg-gray-900 shadow-lg py-3' : 'bg-transparent py-6'}`}>
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="flex justify-between items-center">
+            <div>
+              {/* Logo replaced with GIF image */}
+              <div className={`relative transition-all duration-300 ${scrollY > 50 ? 'w-16 h-16' : 'w-24 h-24'}`}>
+                <Image
+                  src="/sociologo.gif" // Change this to your local GIF path
+                  alt="SocioInvent Logo"
+                  width={scrollY > 50 ? 64 : 96}
+                  height={scrollY > 50 ? 64 : 96}
+                  className="rounded-full"
+                />
+              </div>
+            </div>
+            <div className="hidden md:flex items-center gap-8 lg:gap-20">
+              {navigationItems.map((item, index) => (
+                <a 
+                  key={index} 
+                  href={item.href} 
+                  className={`text-white text-lg font-bold tracking-wide hover:text-cyan-400 transition-colors transform ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}
+                  style={{ 
+                    transitionDelay: `${index * 150}ms`,
+                    transitionProperty: 'transform, opacity',
+                    transitionDuration: '1000ms'
+                  }}
+                >
+                  {item.title}
+                </a>
+              ))}
+            </div>
           </div>
         </div>
-        <div className="flex items-center gap-20">
-          {navigationItems.map((item, index) => (
-            <a key={index} href={item.href} className="text-white text-lg font-bold tracking-wide hover:text-cyan-400 transition-colors">
-              {item.title}
-            </a>
-          ))}
-        </div>
-      </div>
-    </div>
-  </nav>
-
+      </nav>
 
       {/* Hero Section - Full Screen */}
-      <section className="h-screen w-full flex items-center justify-center bg-gradient-to-r from-gray-900 via-gray-800 to-black relative">
-      <div className="max-w-7xl mx-auto px-4 text-center">
-        <h1 className="text-8xl font-bold mb-8 tracking-tight leading-tight">
-          <span className="text-white">#</span>
-          <span className="text-cyan-400">Future</span>
-          <span className="text-white"> is now</span>
-          <span className="text-green-400">.</span>
-        </h1>
-          <h2 className="text-white text-3xl font-light mb-12">
-          Hytham 1.0: Our Most Powerful AI Model for the Agentic Era
-          </h2>
+      <section className="h-screen w-full flex items-center justify-center bg-gradient-to-b from-gray-900 to-black relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 text-center z-10">
+          <h1 className="text-5xl md:text-6xl lg:text-8xl font-bold mb-8 tracking-tight leading-tight overflow-hidden">
+            <div className="flex flex-wrap justify-center">
+              <span 
+                className={`text-white transform ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-16 opacity-0'}`}
+                style={{ transitionDelay: '200ms', transitionDuration: '1000ms', transitionProperty: 'transform, opacity' }}
+              >
+                #
+              </span>
+              <span 
+                className={`text-cyan-400 transform ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-16 opacity-0'}`}
+                style={{ transitionDelay: '400ms', transitionDuration: '1000ms', transitionProperty: 'transform, opacity' }}
+              >
+                Future
+              </span>
+              <span 
+                className={`text-white transform ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-16 opacity-0'}`}
+                style={{ transitionDelay: '600ms', transitionDuration: '1000ms', transitionProperty: 'transform, opacity' }}
+              >
+                &nbsp;is now
+              </span>
+              <span 
+                className={`text-green-400 transform ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-16 opacity-0'}`}
+                style={{ transitionDelay: '800ms', transitionDuration: '1000ms', transitionProperty: 'transform, opacity' }}
+              >
+                .
+              </span>
+            </div>
+          </h1>
           
+          <h2 
+            className={`text-white text-xl md:text-2xl lg:text-3xl font-light mb-12 transform ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
+            style={{ transitionDelay: '1000ms', transitionDuration: '1000ms', transitionProperty: 'transform, opacity' }}
+          >
+            Hytham 1.0: Our Most Powerful AI Model for the Agentic Era
+          </h2>
+            
           {/* CTA Buttons */}
-          <div className="flex justify-center gap-40 z-10 relative">
+          <div className="flex flex-col md:flex-row justify-center md:gap-8 lg:gap-40 z-10 relative">
             <Link href="#">
-              <button className="bg-gradient-to-r from-purple-600 to-cyan-600 text-white px-10 py-4 rounded-full font-medium hover:shadow-lg transition-all">
+              <button 
+                className={`bg-gradient-to-r from-purple-600 to-cyan-600 text-white px-8 py-3 md:px-10 md:py-4 rounded-full font-medium hover:shadow-lg transition-all mb-4 md:mb-0 transform ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
+                style={{ transitionDelay: '1200ms', transitionDuration: '1000ms', transitionProperty: 'transform, opacity' }}
+              >
                 Learn More
               </button>
             </Link>
             <Link href="#">
-              <button className="border border-cyan-400 text-cyan-400 px-10 py-4 rounded-full font-medium hover:bg-cyan-400 hover:bg-opacity-10 transition-all">
-              Chat with Hytham
+              <button 
+                className={`border border-cyan-400 text-cyan-400 px-8 py-3 md:px-10 md:py-4 rounded-full font-medium hover:bg-cyan-400 hover:bg-opacity-10 transition-all transform ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
+                style={{ transitionDelay: '1400ms', transitionDuration: '1000ms', transitionProperty: 'transform, opacity' }}
+              >
+                Chat with Hytham
               </button>
             </Link>
           </div>
         </div>
 
-{/* Wave Image only at the bottom of the page */}
-<div className="absolute bottom-0 left-0 right-0 w-full h-auto overflow-hidden" style={{ top: 'auto' }}>
-  <Image
-    src="/waver.png"  // Replace with your actual PNG file path
-    alt="Wave Pattern"
-    width={1200}
-    height={300}
-    className="w-full translate-y-0"  // Ensure no translation upward
-    priority
-  />
-</div>
-</section>
+        {/* Wave Animation at bottom of hero section */}
+        <div className="absolute bottom-0 left-0 right-0 w-full h-96 overflow-hidden">
+          <div 
+            className={`relative w-full transform ${isLoaded ? 'translate-y-0' : 'translate-y-full'}`}
+            style={{ transitionDelay: '600ms', transitionDuration: '1500ms', transitionProperty: 'transform' }}
+          >
+            <Image
+              src="/wave111.png"  // Replace with your actual wave PNG file path
+              alt="Wave Pattern"
+              width={2920}
+              height={1000}
+              className="w-full opacity-100 animate-wave"
+              priority
+            />
+          </div>
+        </div>
+      </section>
 
+      {/* Add this style tag for the wave animation */}
+      <style jsx global>{`
+        @keyframes wave {
+          0% {
+            transform: translateX(0) translateY(0);
+          }
+          50% {
+            transform: translateX(-2%) translateY(1%);
+          }
+          100% {
+            transform: translateX(0) translateY(0);
+          }
+        }
+        .animate-wave {
+          animation: wave 8s ease-in-out infinite;
+        }
+      `}</style>
       {/* Project Brain Section - Full Screen */}
       <section className="relative w-full min-h-screen bg-gray-900 overflow-hidden">
       {/* Network background visualization */}
