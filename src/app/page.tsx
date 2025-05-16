@@ -15,11 +15,26 @@ const navigationItems = [
 
 export default function Page() {
   const [scrollY, setScrollY] = useState(0);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [headerVisible, setHeaderVisible] = useState(true);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrollY(window.scrollY);
+      const currentScrollY = window.scrollY;
+      
+      // Determine if we're scrolling up or down
+      if (currentScrollY > lastScrollY + 10) {
+        // Scrolling down - hide header
+        setHeaderVisible(false);
+      } else if (currentScrollY < lastScrollY - 10) {
+        // Scrolling up - show header
+        setHeaderVisible(true);
+      }
+      
+      // Update scroll position states
+      setScrollY(currentScrollY);
+      setLastScrollY(currentScrollY);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -33,12 +48,18 @@ export default function Page() {
       window.removeEventListener('scroll', handleScroll);
       clearTimeout(timer);
     };
-  }, []);
+  }, [lastScrollY]);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black">
       {/* Navbar - with scroll effect */}
-      <nav className={`fixed w-full z-50 transition-all duration-300 ${scrollY > 50 ? 'bg-gray-900 shadow-lg py-3' : 'bg-transparent py-6'}`}>
+      <nav 
+        className={`fixed w-full z-50 transition-all duration-300 ${
+          scrollY > 50 ? 'bg-gray-900/90 backdrop-blur-md shadow-lg py-3' : 'bg-transparent py-6'
+        } transform ${
+          headerVisible ? 'translate-y-0' : '-translate-y-full'
+        }`}
+      >
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-center">
             <div>
@@ -53,16 +74,16 @@ export default function Page() {
                 />
               </div>
             </div>
-            <div className="hidden md:flex items-center gap-8 lg:gap-20">
+            <div className="hidden md:flex items-center gap-8 lg:gap-12">
               {navigationItems.map((item, index) => (
                 <a 
                   key={index} 
                   href={item.href} 
-                  className={`text-white text-lg font-bold tracking-wide hover:text-cyan-400 transition-colors transform ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}
+                  className={`text-white text-lg font-medium tracking-wide hover:text-cyan-400 transition-all transform ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}
                   style={{ 
-                    transitionDelay: `${index * 150}ms`,
-                    transitionProperty: 'transform, opacity',
-                    transitionDuration: '1000ms'
+                    transitionDelay: `${index * 100}ms`,
+                    transitionProperty: 'transform, opacity, color',
+                    transitionDuration: '800ms'
                   }}
                 >
                   {item.title}
@@ -75,232 +96,300 @@ export default function Page() {
 
       {/* Hero Section - Full Screen */}
       <section className="h-screen w-full flex items-center justify-center bg-gradient-to-b from-gray-900 to-black relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 text-center z-10">
-          <h1 className="text-5xl md:text-6xl lg:text-8xl font-bold mb-8 tracking-tight leading-tight overflow-hidden">
-            <div className="flex flex-wrap justify-center">
-              <span 
-                className={`text-white transform ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-16 opacity-0'}`}
-                style={{ transitionDelay: '200ms', transitionDuration: '1000ms', transitionProperty: 'transform, opacity' }}
-              >
-                #
-              </span>
-              <span 
-                className={`text-cyan-400 transform ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-16 opacity-0'}`}
-                style={{ transitionDelay: '400ms', transitionDuration: '1000ms', transitionProperty: 'transform, opacity' }}
-              >
-                Future
-              </span>
-              <span 
-                className={`text-white transform ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-16 opacity-0'}`}
-                style={{ transitionDelay: '600ms', transitionDuration: '1000ms', transitionProperty: 'transform, opacity' }}
-              >
-                &nbsp;is now
-              </span>
-              <span 
-                className={`text-green-400 transform ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-16 opacity-0'}`}
-                style={{ transitionDelay: '800ms', transitionDuration: '1000ms', transitionProperty: 'transform, opacity' }}
-              >
-                .
-              </span>
-            </div>
-          </h1>
-          
-          <h2 
-            className={`text-white text-xl md:text-2xl lg:text-3xl font-light mb-12 transform ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
-            style={{ transitionDelay: '1000ms', transitionDuration: '1000ms', transitionProperty: 'transform, opacity' }}
-          >
-            Hytham 1.0: Our Most Powerful AI Model for the Agentic Era
-          </h2>
+        <div className="max-w-7xl mx-auto px-4 z-10">
+          <div className="text-center">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 md:mb-8 tracking-tight leading-tight">
+              <div className="flex flex-wrap justify-center items-baseline">
+                <span 
+                  className={`text-white inline-block transform ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-16 opacity-0'}`}
+                  style={{ transitionDelay: '200ms', transitionDuration: '1000ms', transitionProperty: 'transform, opacity' }}
+                >
+                  #
+                </span>
+                <span 
+                  className={`text-cyan-400 inline-block mx-2 transform ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-16 opacity-0'}`}
+                  style={{ transitionDelay: '400ms', transitionDuration: '1000ms', transitionProperty: 'transform, opacity' }}
+                >
+                  Future
+                </span>
+                <span 
+                  className={`text-white inline-block transform ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-16 opacity-0'}`}
+                  style={{ transitionDelay: '600ms', transitionDuration: '1000ms', transitionProperty: 'transform, opacity' }}
+                >
+                  is&nbsp;now
+                </span>
+                <span 
+                  className={`text-green-400 inline-block transform ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-16 opacity-0'}`}
+                  style={{ transitionDelay: '800ms', transitionDuration: '1000ms', transitionProperty: 'transform, opacity' }}
+                >
+                  .
+                </span>
+              </div>
+            </h1>
             
-          {/* CTA Buttons */}
-          <div className="flex flex-col md:flex-row justify-center md:gap-8 lg:gap-40 z-10 relative">
-            <Link href="#">
-              <button 
-                className={`bg-gradient-to-r from-purple-600 to-cyan-600 text-white px-8 py-3 md:px-10 md:py-4 rounded-full font-medium hover:shadow-lg transition-all mb-4 md:mb-0 transform ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
-                style={{ transitionDelay: '1200ms', transitionDuration: '1000ms', transitionProperty: 'transform, opacity' }}
-              >
-                Learn More
-              </button>
-            </Link>
-            <Link href="#">
-              <button 
-                className={`border border-cyan-400 text-cyan-400 px-8 py-3 md:px-10 md:py-4 rounded-full font-medium hover:bg-cyan-400 hover:bg-opacity-10 transition-all transform ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
-                style={{ transitionDelay: '1400ms', transitionDuration: '1000ms', transitionProperty: 'transform, opacity' }}
-              >
-                Chat with Hytham
-              </button>
-            </Link>
+            <h2 
+              className={`text-white text-xl md:text-2xl lg:text-3xl font-light mb-12 mx-auto max-w-3xl transform ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
+              style={{ 
+                transitionDelay: '1000ms', 
+                transitionDuration: '1000ms', 
+                transitionProperty: 'transform, opacity',
+                letterSpacing: '0.05em'
+              }}
+            >
+              Hytham 1.0: Our Most Powerful AI Model for the Agentic Era
+            </h2>
+              
+            {/* CTA Buttons */}
+            <div className="flex flex-col md:flex-row justify-center gap-4 md:gap-8 z-10 relative">
+              <Link href="#">
+                <button 
+                  className={`bg-gradient-to-r from-purple-600 to-cyan-600 text-white px-8 py-3 md:px-10 md:py-4 rounded-full font-medium hover:shadow-lg hover:shadow-purple-500/20 transition-all mb-4 md:mb-0 transform ${isLoaded ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-8 opacity-0 scale-95'}`}
+                  style={{ transitionDelay: '1200ms', transitionDuration: '1000ms', transitionProperty: 'transform, opacity, box-shadow' }}
+                >
+                  Learn More
+                </button>
+              </Link>
+              <Link href="#">
+                <button 
+                  className={`border-2 border-cyan-400 text-cyan-400 px-8 py-3 md:px-10 md:py-4 rounded-full font-medium hover:bg-cyan-400/10 transition-all transform ${isLoaded ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-8 opacity-0 scale-95'}`}
+                  style={{ transitionDelay: '1400ms', transitionDuration: '1000ms', transitionProperty: 'transform, opacity, background-color' }}
+                >
+                  Chat with Hytham
+                </button>
+              </Link>
+            </div>
           </div>
         </div>
 
-        {/* Wave Animation at bottom of hero section */}
-        <div className="absolute bottom-0 left-0 right-0 w-full h-96 overflow-hidden">
-          <div 
-            className={`relative w-full transform ${isLoaded ? 'translate-y-0' : 'translate-y-full'}`}
-            style={{ transitionDelay: '600ms', transitionDuration: '1500ms', transitionProperty: 'transform' }}
-          >
-            <Image
-              src="/wave111.png"  // Replace with your actual wave PNG file path
-              alt="Wave Pattern"
-              width={2920}
-              height={1000}
-              className="w-full opacity-100 animate-wave"
-              priority
-            />
-          </div>
+        {/* Optional: Add some floating elements or particles for visual interest */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {/* You could add particles or other decorative elements here */}
         </div>
       </section>
-
-      {/* Add this style tag for the wave animation */}
-      <style jsx global>{`
-        @keyframes wave {
-          0% {
-            transform: translateX(0) translateY(0);
-          }
-          50% {
-            transform: translateX(-2%) translateY(1%);
-          }
-          100% {
-            transform: translateX(0) translateY(0);
-          }
-        }
-        .animate-wave {
-          animation: wave 8s ease-in-out infinite;
-        }
-      `}</style>
-      {/* Project Brain Section - Full Screen */}
-      <section className="relative w-full min-h-screen bg-gray-900 overflow-hidden">
-      {/* Network background visualization */}
-      <div className="absolute inset-0">
-        {/* This would be where the network visualization appears */}
-        {Array.from({ length: 20 }).map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-2 h-2 bg-blue-400 rounded-full"
-            style={{
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-              opacity: 0.6,
-              boxShadow: "0 0 10px #0ff"
-            }}
-          />
-        ))}
-      </div>
-      
-      {/* Content container */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 py-20 flex flex-col justify-center items-center min-h-screen text-center">
-        {/* Logo in top right */}
-        <div className="absolute top-8 right-8">
-          <div className="flex items-center">
-            <div className="w-8 h-8">
-              <svg viewBox="0 0 100 100" className="w-full h-full">
-                <circle cx="50" cy="50" r="40" fill="url(#grad1)" />
-                <defs>
-                  <radialGradient id="grad1" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
-                    <stop offset="0%" stopColor="#8a3ffc" />
-                    <stop offset="100%" stopColor="#6fdbff" />
-                  </radialGradient>
-                </defs>
-              </svg>
-            </div>
-            <span className="text-white ml-2 font-bold text-lg">SOCIOINVENT</span>
-          </div>
-        </div>
-        
-        {/* Main heading */}
-        <div className="mt-16 flex flex-col items-center">
-          <h1 className="text-8xl font-bold mb-4 text-center">
-            <span className="text-lime-400">Project</span>{" "}
-            <span className="text-white">Brain</span>
-            <span className="text-lime-400">.</span>
-          </h1>
-          
-          {/* Subtitle */}
-          <p className="text-white text-xl max-w-3xl text-center">
-            Pioneering AI that mirrors human cognition, driving us closer to true Artificial
-            General Intelligence (AGI).
-          </p>
-          
-          {/* Learn More button */}
-          <div className="mt-12">
-            <button className="px-8 py-3 bg-gradient-to-r from-purple-500 to-green-500 rounded-full text-white text-lg font-medium">
-              Learn More
-            </button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    {/*project brain description*/}
-
-    <section className="w-full py-20 bg-gradient-to-b from-gray-900 to-blue-900">
-      <div className="max-w-6xl mx-auto px-6">
-        {/* Main Heading - Left aligned */}
-        <h2 className="text-6xl font-bold mb-20 text-left">
-          <span className="text-lime-400">Project</span>{" "}
-          <span className="text-white">Brain</span>
-          <span className="text-lime-400">.</span>
-        </h2>
-        
-        {/* Subtitle with Brain Icon - Center aligned */}
-        <h3 className="text-white text-4xl font-light mb-16 text-center leading-relaxed">
-          A Research Prototype Inspired by the Human Brain{" "}
-          <span className="inline-block mx-1">
-            <svg viewBox="0 0 24 24" width="36" height="36" fill="#FF69B4">
-              <path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm0 16c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7z"/>
-              <path d="M10 10c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2zm8 3c0 .55-.45 1-1 1h-4c-.55 0-1-.45-1-1s.45-1 1-1h4c.55 0 1 .45 1 1z"/>
-            </svg>
-          </span>{" "}
-          for Achieving General Intelligence
-        </h3>
-        
-        {/* Descriptive Text - Center aligned with controlled width */}
-        <p className="text-white text-xl leading-relaxed max-w-5xl mx-auto text-center">
-          Our cutting-edge research prototype is designed to emulate the intricacies of the human brain, 
-          paving the way for the development of true Artificial General Intelligence (AGI). By leveraging 
-          advanced neural architectures, cognitive modeling, and adaptive learning systems, we are 
-          pushing the boundaries of AI to create systems capable of reasoning, problem-solving, and 
-          continuous learning—just like the human mind.
-        </p>
-      </div>
-    </section>
-
-      {/* About Us Section - Full Screen - Redesigned */}
-<section className="min-h-screen w-full flex flex-col justify-center py-24 bg-gradient-to-b from-blue-950 via-blue-900 to-black relative overflow-hidden">
-  {/* Background elements - simplified */}
-  <div className="absolute top-0 left-0 w-full h-full overflow-hidden opacity-10">
-    <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-600 rounded-full filter blur-3xl"></div>
-    <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-purple-500 rounded-full filter blur-3xl"></div>
+ {/* Project Brain Section - Full Screen */}
+<section className="relative w-full min-h-screen bg-gradient-to-b from-black to-gray-900 overflow-hidden">
+  {/* Network background visualization - Enhanced */}
+  <div className="absolute inset-0">
+    {/* Animated network nodes */}
+    {Array.from({ length: 30 }).map((_, i) => (
+      <div
+        key={i}
+        className="absolute rounded-full animate-pulse"
+        style={{
+          width: `${Math.random() * 4 + 1}px`,
+          height: `${Math.random() * 4 + 1}px`,
+          top: `${Math.random() * 100}%`,
+          left: `${Math.random() * 100}%`,
+          opacity: 0.4 + Math.random() * 0.4,
+          backgroundColor: i % 3 === 0 ? '#34d399' : i % 3 === 1 ? '#60a5fa' : '#a78bfa',
+          boxShadow: i % 3 === 0 ? '0 0 15px #34d399' : i % 3 === 1 ? '0 0 15px #60a5fa' : '0 0 15px #a78bfa',
+          animationDuration: `${Math.random() * 3 + 2}s`,
+        }}
+      />
+    ))}
   </div>
   
-  <div className="max-w-6xl mx-auto px-4 relative z-10 text-center">
-    {/* Header */}
-    <div className="mb-16">
-      <h1 className="text-7xl font-bold text-white mb-6">About</h1>
-      <div className="w-96 h-1 mx-auto bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"></div>
+  {/* Content container */}
+  <div className="relative z-10 max-w-7xl mx-auto px-4 py-20 flex flex-col justify-center items-center min-h-screen">
+    {/* Logo in top right */}
+    <div className="absolute top-8 right-8">
+      <div className="flex items-center">
+        <div className="w-8 h-8">
+          <svg viewBox="0 0 100 100" className="w-full h-full">
+            <circle cx="50" cy="50" r="40" fill="url(#grad1)" />
+            <defs>
+              <radialGradient id="grad1" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+                <stop offset="0%" stopColor="#8a3ffc" />
+                <stop offset="100%" stopColor="#6fdbff" />
+              </radialGradient>
+            </defs>
+          </svg>
+        </div>
+        <span className="text-white ml-2 font-bold text-lg tracking-wider">SOCIOINVENT</span>
+      </div>
     </div>
     
-    {/* Main content - centered with larger typography */}
-    <div className="max-w-4xl mx-auto">
-      <h2 className="text-4xl font-bold text-white mb-12">
-        SocioDynamics AI: Advancing AI for a Better World
-      </h2>
+    {/* Main heading with initial position below viewport */}
+    <div className="flex flex-col items-center translate-y-20 opacity-0" id="heroContent">
+      <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold mb-8 text-center tracking-tight">
+        <span className="text-green-400">Project</span>{" "}
+        <span className="text-white">Brain</span>
+        <span className="text-green-400">.</span>
+      </h1>
       
-      <p className="text-xl text-white mb-12 leading-relaxed">
-        SocioDynamics is an AI research and deployment company—an innovation hub
-        where ideas flourish, creativity thrives, and breakthroughs happen. Our workspace
-        drives cutting-edge technologies that redefine what&apos;s possible.
+      {/* Subtitle */}
+      <p className="text-white text-xl max-w-3xl text-center leading-relaxed font-light mb-12">
+        Pioneering AI that mirrors human cognition, driving us closer to true 
+        <span className="mx-1 text-cyan-400 font-normal">Artificial General Intelligence</span> (AGI).
       </p>
       
-      <p className="text-xl text-white leading-relaxed">
+      {/* Learn More button */}
+      <div className="mt-4">
+        <button className="px-8 py-3 bg-gradient-to-r from-purple-600 to-cyan-600 rounded-full text-white text-lg font-medium hover:shadow-lg hover:shadow-purple-500/20 transition-all transform hover:scale-105 duration-300">
+          Learn More
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+{/* Project Brain Description */}
+<section className="w-full py-24 bg-gradient-to-b from-gray-900 to-black">
+  <div className="max-w-6xl mx-auto px-6">
+    {/* Main Heading - Better alignment */}
+    <div className="mb-16">
+      <h2 className="text-5xl md:text-6xl font-bold text-left translate-y-16 opacity-0 transition-all duration-1000 ease-out scroll-reveal">
+        <span className="text-green-400">Project</span>{" "}
+        <span className="text-white">Brain</span>
+        <span className="text-green-400">.</span>
+      </h2>
+      <div className="w-32 h-1 mt-4 bg-gradient-to-r from-purple-600 to-cyan-600 translate-y-16 opacity-0 transition-all duration-1000 delay-100 ease-out scroll-reveal"></div>
+    </div>
+    
+    {/* Subtitle with Brain Icon - Center aligned and enhanced */}
+    <h3 className="text-white text-3xl md:text-4xl font-light mb-16 text-center leading-relaxed translate-y-16 opacity-0 transition-all duration-1000 delay-200 ease-out scroll-reveal">
+      A Research Prototype Inspired by the Human Brain{" "}
+      <span className="inline-block mx-1 align-middle">
+        <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-cyan-400">
+          <path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9z"/>
+          <path d="M12 15c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/>
+          <path d="M12 8v-2"/>
+          <path d="M12 18v-2"/>
+          <path d="M8 12h-2"/>
+          <path d="M18 12h-2"/>
+        </svg>
+      </span>{" "}
+      for Achieving General Intelligence
+    </h3>
+    
+    {/* Descriptive Text - Center aligned with controlled width */}
+    <p className="text-white text-xl leading-relaxed max-w-5xl mx-auto text-center translate-y-16 opacity-0 transition-all duration-1000 delay-300 ease-out scroll-reveal">
+      Our cutting-edge research prototype is designed to emulate the intricacies of the human brain, 
+      paving the way for the development of true Artificial General Intelligence (AGI). By leveraging 
+      <span className="text-cyan-400"> advanced neural architectures</span>, 
+      <span className="text-purple-400"> cognitive modeling</span>, and 
+      <span className="text-green-400"> adaptive learning systems</span>, we are 
+      pushing the boundaries of AI to create systems capable of reasoning, problem-solving, and 
+      continuous learning—just like the human mind.
+    </p>
+  </div>
+</section>
+
+{/* About Us Section - Full Screen - Redesigned */}
+<section className="min-h-screen w-full flex flex-col justify-center py-24 bg-gradient-to-b from-black via-gray-900 to-black relative overflow-hidden">
+  {/* Background elements - Enhanced */}
+  <div className="absolute top-0 left-0 w-full h-full overflow-hidden opacity-10">
+    <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-600 rounded-full filter blur-3xl"></div>
+    <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-purple-600 rounded-full filter blur-3xl"></div>
+    <div className="absolute top-3/4 right-1/3 w-48 h-48 bg-green-500 rounded-full filter blur-3xl"></div>
+  </div>
+  
+  <div className="max-w-6xl mx-auto px-4 relative z-10">
+    {/* Header */}
+    <div className="mb-20 text-center">
+      <h1 className="text-6xl md:text-7xl font-bold text-white mb-6 translate-y-16 opacity-0 transition-all duration-1000 ease-out scroll-reveal">About</h1>
+      <div className="w-32 h-1 mx-auto bg-gradient-to-r from-purple-600 to-cyan-600 translate-y-16 opacity-0 transition-all duration-1000 delay-100 ease-out scroll-reveal"></div>
+    </div>
+    
+    {/* Main content - better alignment and typography */}
+    <div className="max-w-4xl mx-auto">
+      <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 text-center translate-y-16 opacity-0 transition-all duration-1000 delay-200 ease-out scroll-reveal">
+        SocioDynamics AI: <span className="text-cyan-400">Advancing AI</span> for a <span className="text-green-400">Better World</span>
+      </h2>
+      
+      <p className="text-xl text-white mb-12 leading-relaxed text-center translate-y-16 opacity-0 transition-all duration-1000 delay-300 ease-out scroll-reveal">
+        SocioDynamics is an AI research and deployment company—an innovation hub
+        where ideas flourish, creativity thrives, and breakthroughs happen. Our workspace
+        drives cutting-edge technologies that redefine what is possible.
+      </p>
+      
+      <p className="text-xl text-white leading-relaxed text-center translate-y-16 opacity-0 transition-all duration-1000 delay-400 ease-out scroll-reveal">
         But we go beyond technology. Our innovations are purpose-driven, harnessing the
         power of AI and Robotics to positively impact social dynamics, fostering a better
         and more harmonious world for all.
       </p>
     </div>
     
-</div>
+    {/* Added call to action */}
+    <div className="mt-16 text-center translate-y-16 opacity-0 transition-all duration-1000 delay-500 ease-out scroll-reveal">
+      <button className="px-8 py-3 border-2 border-cyan-400 text-cyan-400 rounded-full text-lg font-medium hover:bg-cyan-400/10 transition-all transform hover:scale-105 duration-300">
+        Join Our Mission
+      </button>
+    </div>
+  </div>
 </section>
+
+{/* Add custom animations to your Tailwind CSS */}
+<style jsx global>{`
+  @keyframes fadeUpIn {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .animate-fade-up-in {
+    animation: fadeUpIn 1.2s forwards;
+  }
+  
+  /* Add this script to handle scroll animations */
+  .scroll-reveal.active {
+    transform: translateY(0) !important;
+    opacity: 1 !important;
+  }
+`}</style>
+
+{/* Script for scroll animations */}
+<script dangerouslySetInnerHTML={{
+  __html: `
+    // Automatically animate the hero section when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+      // Get the hero content element
+      const heroContent = document.getElementById('heroContent');
+      
+      // Apply animation after a short delay
+      setTimeout(() => {
+        heroContent.style.transition = 'all 1.2s ease-out';
+        heroContent.style.transform = 'translateY(0)';
+        heroContent.style.opacity = '1';
+      }, 300);
+      
+      // Initialize intersection observer to detect when elements enter viewport
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          // Add 'active' class when element enters the viewport
+          if (entry.isIntersecting) {
+            // Get the element that needs to be animated
+            const target = entry.target;
+            
+            // Apply the animation by changing styles directly
+            setTimeout(() => {
+              target.style.transform = 'translateY(0)';
+              target.style.opacity = '1';
+            }, 100);
+            
+            // Unobserve after animation is triggered
+            observer.unobserve(target);
+          }
+        });
+      }, {
+        root: null, // viewport
+        threshold: 0.15, // trigger when 15% visible
+        rootMargin: '-50px 0px' // trigger slightly before element enters viewport
+      });
+      
+      // Target all elements with the scroll-reveal class
+      document.querySelectorAll('.scroll-reveal').forEach(el => {
+        observer.observe(el);
+      });
+    });
+  `
+}} />
+
 {/* Our Services Section - Full Screen */}
 <section className="min-h-screen w-full flex items-center py-24 bg-gradient-to-b from-gray-900 via-gray-800 to-black relative overflow-hidden">
   {/* Background elements */}
